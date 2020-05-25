@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Membre from './components/Membre'
+import Button from './components/Button'
+const family = {
+  member1: {
+      name: "Kirill",
+      age: 27,
+      profession: "Softwere Developer"
+  },
+  member2: {
+      name: "Léa",
+      age: 18,
+      profession: "Designer"
+  }
+}
 
-function App() {
-  return (
+class App extends Component {
+  state = {
+    family
+  }
+
+  handleClick = (num) => {
+    const family = { ...this.state.family }
+    family.member1.age += num
+    this.setState({ family })
+  }
+  render() {
+    const { title } = this.props
+    const { family } = this.state
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{ title }</h1>
+      <Membre 
+        name={ family.member1.name }
+         age={ family.member1.age }> 
+          <strong>Je suis un { family.member1.profession }</strong>
+      </Membre>
+      <Membre
+        age={ family.member2.age}
+        name={ family.member2.name}>
+          <strong>Je suis un { family.member2.profession }</strong>
+      </Membre> 
+      <Button addAge={() => this.handleClick(2) }/>
     </div>
-  );
+  )
+}
 }
 
 export default App;
