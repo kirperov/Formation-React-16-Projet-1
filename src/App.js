@@ -25,16 +25,28 @@ class App extends Component {
     family.member1.age += num
     this.setState({ family })
   }
+
+  
+  handleChange = event => {
+    const family = { ...this.state.family }
+    const name = event.target.value
+    family.member1.name = name 
+    this.setState({ family })
+  }
+
+
   render() {
     const { title } = this.props
     const { family } = this.state
     return (
     <div className="App">
       <h1>{ title }</h1>
+      <input value={ family.member1.name } type="text" onChange={ this.handleChange } />
       <Membre 
         name={ family.member1.name }
          age={ family.member1.age }> 
           <strong>Je suis un { family.member1.profession }</strong>
+          <p>Hello</p>
       </Membre>
       <Membre
         age={ family.member2.age}
