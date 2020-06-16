@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-const Memebre = ({name, age, children}) => {
+const Memebre = ( {name, age, children, hideName, handleChange }) => {
     return (
         <Fragment>
             <h2 style={{ 
@@ -9,9 +9,10 @@ const Memebre = ({name, age, children}) => {
                 }}> 
                 { name.toUpperCase() } , { age }
             </h2>
+            <input value={ name } type="text" onChange={ handleChange } />
+            <button onClick={hideName}>X</button>
             { children ? <p>{ children }</p> :<p>Pas de données en cours</p>}
         </Fragment>
-    
     )
 }
 
